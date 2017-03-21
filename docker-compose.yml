@@ -1,0 +1,9 @@
+version: '2'
+services:
+  cas-server:
+    container_name: cas-server
+    build: cas-server/
+    ports:
+     - "8080:8080"
+    volumes:
+     - ./cas-server/target:/target
