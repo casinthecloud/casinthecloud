@@ -11,6 +11,19 @@ services:
       - couchbase
     depends_on:
       - couchbase
+  cas-management:
+    container_name: cas-management
+    build: cas-management/
+    ports:
+     - "8081:8081"
+    volumes:
+     - ./cas-management/target:/target
+    links:
+      - couchbase
+      - cas-server
+    depends_on:
+      - couchbase
+      - cas-server
   couchbase:
     container_name: couchbase
     image: couchbase/server:4.6.1
@@ -18,9 +31,8 @@ services:
      - "8091-8094:8091-8094"
      - "11210:11210"
     ulimits:
-      nproc: 65535
-      nofile:
-        soft: 40960
-        hard: 40960
+      nofile: "40960:40960"
+      core: "100000000:100000000"
+      memlock: "100000000:100000000"
     volumes:
       - ./couchbase/var:/opt/couchbase/var
