@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   cas-server:
     container_name: cas-server
@@ -7,3 +7,20 @@ services:
      - "8080:8080"
     volumes:
      - ./cas-server/target:/target
+    links:
+      - couchbase
+    depends_on:
+      - couchbase
+  couchbase:
+    container_name: couchbase
+    image: couchbase/server:4.6.1
+    ports:
+     - "8091-8094:8091-8094"
+     - "11210:11210"
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 40960
+        hard: 40960
+    volumes:
+      - ./couchbase/var:/opt/couchbase/var
