@@ -31,8 +31,8 @@ services:
      - "8091-8094:8091-8094"
      - "11210:11210"
     ulimits:
-      nofile: "40960:40960"
-      core: "100000000:100000000"
-      memlock: "100000000:100000000"
+      nofile: 40960
+      core: 100000000
+      memlock: 100000000
     volumes:
       - ./couchbase/var:/opt/couchbase/var

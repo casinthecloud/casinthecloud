@@ -51,6 +51,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
+					<packagingExcludes>WEB-INF/classes/services/Apereo-10000002.json,WEB-INF/classes/services/HTTPSandIMAPS-10000001.json</packagingExcludes>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<recompressZippedFiles>false</recompressZippedFiles>
 					<archive>
