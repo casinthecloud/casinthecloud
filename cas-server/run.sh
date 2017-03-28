@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar target/cas.war
+java -jar target/cas-server.war

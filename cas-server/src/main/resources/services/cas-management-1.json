@@ -1,6 +1,6 @@
 {
   "@class" : "org.apereo.cas.services.RegexRegisteredService",
-  "serviceId" : "^http://cas-management:8081/",
+  "serviceId" : "^http://cas-management:8081/callback\\?client_name=CasClient$",
   "name" : "cas-management",
   "theme" : "apereo",
   "id" : 1,
