@@ -1,0 +1,7 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - cas-*.log
+output.logstash:
+  hosts: ["logstash:5044"]
+  index: filebeat

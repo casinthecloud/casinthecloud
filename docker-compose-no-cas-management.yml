@@ -8,14 +8,6 @@ services:
     depends_on:
       - couchbase
       - elasticsearch
-  cas-management:
-    container_name: cas-management
-    build: cas-management/
-    ports:
-     - "8081:8081"
-    depends_on:
-      - couchbase
-      - cas-server
   couchbase:
     container_name: couchbase
     image: couchbase/server:4.6.1

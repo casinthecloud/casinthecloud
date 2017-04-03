@@ -21,12 +21,7 @@ You need to locally add the `cas-server` and `cas-management` hosts by updating 
 
 ### Couchbase setup
 
-Before launching the full stack, you need to start only the Couchbase container for setup. You can do that with the following commands:
-
-```shell
-cd couchbase
-docker-compose up
-```
+Before launching the full stack, you need to start only the Couchbase container for setup. You can do that with the following command at the root directory: `docker-compose -f docker-compose-without-cas.yml up`.
 
 It will start the Couchbase server and the UI will be available on `http://localhost:8091`.
 
