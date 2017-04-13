@@ -1,11 +1,7 @@
-FROM openjdk:8u121
+FROM openjdk:8u121-jdk-alpine
 
-RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.2.2-amd64.deb
-RUN dpkg -i filebeat-5.2.2-amd64.deb
-
-COPY ./filebeat.yml /etc/filebeat/filebeat.yml
-
-COPY ./target/cas-server.war /target/
+COPY ./target/cas-server.war /war/
+WORKDIR /logs
 
 EXPOSE 8080
-CMD ["/etc/init.d/filebeat", "start", ";", "java", "-jar", "-Xms512m", "-Xmx512m", "target/cas-server.war"]
+CMD ["java", "-jar", "-Xms512m", "-Xmx512m", "../war/cas-server.war"]

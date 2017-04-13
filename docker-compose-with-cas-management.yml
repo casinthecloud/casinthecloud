@@ -7,10 +7,18 @@ services:
     ports:
      - "8080:8080"
     volumes:
-      - ./cas-server/services:/services
+      - ./services:/services
+      - ./logs:/logs
     depends_on:
       - memcached
       - elasticsearch
+      - filebeat
+  filebeat:
+    container_name: filebeat
+    build: filebeat/
+    mem_limit: 384m
+    volumes:
+      - ./logs:/logs
   cas-management:
     container_name: cas-management
     build: cas-management/
@@ -21,14 +29,14 @@ services:
       - memcached
       - cas-server
     volumes:
-      - ./cas-server/services:/services
+      - ./services:/services
   memcached:
     container_name: memcached
     image: memcached:1.4.36-alpine
     mem_limit: 256m
     ports:
      - "11211:11211"
-    command: memcached -m 256m
+    command: memcached -m 192m
   logstash:
     container_name: logstash
     build: logstash/
@@ -36,6 +44,8 @@ services:
     ports:
      - "5044:5044"
      - "9600:9600"
+    depends_on:
+     - elasticsearch
   elasticsearch:
     container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
@@ -56,5 +66,3 @@ services:
     ports:
      - "9200:9200"
      - "9300:9300"
-    depends_on:
-     - logstash

@@ -1,4 +1,4 @@
-FROM openjdk:8u121
+FROM openjdk:8u121-jdk-alpine
 
 COPY ./target/cas-management.war /target/
 
