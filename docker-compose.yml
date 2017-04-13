@@ -16,7 +16,7 @@ services:
   filebeat:
     container_name: filebeat
     build: filebeat/
-    mem_limit: 384m
+    mem_limit: 128m
     volumes:
       - ./logs:/logs
   memcached:
