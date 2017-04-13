@@ -11,10 +11,21 @@ services:
     depends_on:
       - memcached
       - elasticsearch
+  cas-management:
+    container_name: cas-management
+    build: cas-management/
+    mem_limit: 384m
+    ports:
+     - "8081:8081"
+    depends_on:
+      - memcached
+      - cas-server
+    volumes:
+      - ./cas-server/services:/services
   memcached:
     container_name: memcached
     image: memcached:1.4.36-alpine
-    mem_limit: 384m
+    mem_limit: 256m
     ports:
      - "11211:11211"
     command: memcached -m 256m
