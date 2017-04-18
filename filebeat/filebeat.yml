@@ -2,6 +2,20 @@ filebeat.prospectors:
 - input_type: log
   paths:
     - /logs/cas.log
+  document_type: applog
+  multiline:
+   pattern: '^[0-9][0-9][0-9][0-9]-'
+   negate: true
+   match: after
+  exclude_lines: ['.*Slf4jLoggingAuditTrailManager\]']
+- input_type: log
+  paths:
+    - /logs/cas_audit.log
+  document_type: auditlog
+  multiline:
+   pattern: '^[0-9][0-9][0-9][0-9]-'
+   negate: true
+   match: after
 output.logstash:
   hosts: ["logstash:5044"]
-  index: filebeat
+  index: caslogs
